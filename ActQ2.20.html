@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Age Checker</title>
+  <style>
+            p   {
+          color: #914767 ;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+        }
+
+        .cart-container {
+            background-color: pink;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #914767 ;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+  </style>
+</head>
+<body>
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+  <div class="container">
+    <h1>Exam Grading System</h1>
+    
+    <label for="score">Enter your score:</label>
+    <input type="number" id="score" placeholder="Input Score">
+    <button onclick="evaluateGrade()">Evaluate Grade</button>
+    
+    <p id="result"></p>
+</div>
+
+    <script>
+        function evaluateGrade() {
+            const score = parseFloat(document.getElementById('score').value);
+            const resultElement = document.getElementById('result');
+            
+            if (isNaN(score) || score < 0 || score > 100) {
+                resultElement.innerText = "Please enter a valid score between 0 and 100.";
+                resultElement.className = '';
+                return;
+            }
+
+            let grade = '';
+            if (score >= 90) {
+                grade = 'A';
+                resultElement.className = 'grade-A';
+            } else if (score >= 80) {
+                grade = 'B';
+                resultElement.className = 'grade-B';
+            } else if (score >= 70) {
+                grade = 'C';
+                resultElement.className = 'grade-C';
+            } else if (score >= 60) {
+                grade = 'D';
+                resultElement.className = 'grade-D';
+            } else {
+                grade = 'F';
+                resultElement.className = 'grade-F';
+            }
+            
+            resultElement.innerText = `Your grade is: ${grade}`;
+        }
+        
+     // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+
+    </script>
+    
+</body>
+</html>

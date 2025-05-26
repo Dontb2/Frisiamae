@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House</title>
+    <style>
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+        }
+    
+    body {
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    canvas {
+        border: 2px solid black;
+    }
+    </style>
+    </head>
+<body>
+    <div class="top-btnn">
+        <button onclick="goBack()" class="btn">Back</button>
+    </div>
+    <canvas id="myCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d")
+
+    //Set canvas size to fill the screen
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    //Draw the house
+    function drawHouse(){
+        //house body
+        ctx.fillStyle = 'pink';
+        ctx.fillRect(300, 400, 300, 300);
+
+        //Roof
+        ctx.beginPath();
+        ctx.moveTo(300, 400);
+        ctx.lineTo(450, 200);
+        ctx.lineTo(600, 400);
+        ctx.closePath();
+        ctx.fillStyle = '#8B0000';
+        ctx.fill();
+
+        //door
+        ctx.fillStyle = 'white';
+        ctx.fillRect(420, 550, 60, 150);
+
+        // windows
+        ctx.fillStyle = '#87CEEB';
+        ctx.fillRect(340, 450, 60, 60);
+        ctx.fillRect(500, 450, 60, 60);
+
+        // window details (line)
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        ctx.moveTo(370, 450);
+        ctx.lineTo(370, 510);
+        ctx.moveTo(340, 480);
+        ctx.lineTo(400, 480);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(530, 450);
+        ctx.lineTo(530, 510);
+        ctx.moveTo(500, 480);
+        ctx.lineTo(560, 480);
+        ctx.stroke();
+    }
+
+    // Draw the sun
+    function drawSun(){
+        ctx.beginPath();
+        ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
+    ctx.fillStyle = '#FFD700';
+    ctx.fill();
+    }
+
+    // Draw a tree
+    function drawTree(x, y) {
+        // Tree Trunk
+        ctx.fillStyle = 'brown';
+        ctx.fillRect(x, y, 40, 100);/
+
+        // Tree Leaves
+        ctx.beginPath();
+        ctx.arc(x + 20, y - 40, 60, , Math.PI * 2);
+        ctxp.fillStyle = '#228B22';0
+        ctx.fill()
+    }
+    
+    // Cloud Animation
+    let cloudX = 0;
+    function drawCloud() {
+        ctx.beginPath();
+        ctx.arc(cloudX, 100, 50, Math.PI * 0.5, Math.PI * 1.5);
+        ctx.arc(cloudX + 50, 100, 50, Math.PI * 1.5, Math.PI * 1.5);
+        ctx.arc(cloudX + 100, 100, 50, Math.PI * 2.5, Math.PI * 3.5);
+    }
+
+               // JavaScript function to go back to the previous page
+               function goBack() {
+        window.history.back();
+    }
+    </script>
+</body>
+</html>

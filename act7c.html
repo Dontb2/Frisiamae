@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XMLHttpRequest Example</title>
+</head>
+
+<style>
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+<br>body>
+
+    
+    <div class="top-btnn">
+        <button onclick="goBack()" class="btn">Back</button>
+    </div>
+    <br>h1>Send User Data</h1>
+
+    <br>form id="user-form">
+    <br>label for="name">Name:</label>
+    <br>input type="text" id="name" name="name" required><br><br>
+
+    <br>label for="email">Email:</label>
+    <br>input type="email" id="email" name="email" required><br><br>
+
+    <br>button type="submit">Submit</button>
+    <br>/form>
+
+    <br>script>
+    <br>document.getElementById("user-form").addEventListener("submit", function(event) {
+        <br>    event.preventDefault();
+
+        <br>const name = document.getElementById("name").value;
+        <br>const email = document.getElementById("email").value;
+
+        <br>const userData = JSON.stringify({ name: name, email: email });
+        <br>const xhr = new XMLHttpRequest();
+
+        <br>xhr.open("POST", "https://jsonplaceholder.typicode.com/posts", true);
+        <br>xhr.setRequestHeader("Content-Type", "application/json");
+
+        <br>xhr.onreadystatechange = function() {
+            <br>    if (xhr.readyState === 4) {  // Ensure request is complete before checking status
+                <br>    if (xhr.status === 201) {
+                    <br>    console.log("Server Response:", xhr.responseText);
+                    <br>alert("Data sent successfully!");
+                    <br>} else {
+                        <br>console.error("Failed to send data. Status:", xhr.status);
+                        <br>alert("Failed to send data.");
+                        <br>}
+                        <br>}
+            };
+
+            <br>xhr.send(userData);
+        });
+  <script>
+        // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+<br>/body>
+<br>/html>

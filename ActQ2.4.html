@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+.top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+            p.dotted {border-style: dotted;}
+            p.dashed {border-style: dashed;}
+            p.solid {border-style: solid;}
+            p.double {border-style: double;}
+            p.groove {border-style: groove;}
+            p.ridge {border-style: ridge;}
+            p.mix {border-style: dotted dashed solid double;}
+
+        </style>
+    </head>
+
+    <body background-color="pink">
+        <div class="top-btnn"><br>
+            <button onclick="goBack()" class="btn">Back</button><br>
+        </div>
+        
+        <h1><b>"My Favorite Quotes"</b></h1>
+        <hr>
+        <p>"QUOTES"</p>
+
+        <p class="dotted">The greatest glory in living lies not in never falling, but in rising every time we fail.<br> - Nelson Mandela</p>
+
+        <p class="dashed">The way to get started is to quit talking and begin doing.<br> - Walt Disney</p>
+
+        <p class="double">Your time is limited, don't waste it living someone else's life. Don't be trapped by dogma which is living with the results of other people's thinking.<br>- Steve Jobbs</p>
+
+        <p class="ridge">The future belongs to those who believe in the beauty of their dreams.<br> - Eleanor Roosebelt</p>
+
+        <p class="mix">If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough.<br> Oprah Winfrey</p>
+
+    </body>
+    <script> // JavaScript function to go back to the previous page
+      function goBack() {
+          window.history.back();
+      }
+      </script>
+<br>
+
+
+
+</html>

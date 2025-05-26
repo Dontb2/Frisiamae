@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+ <html>
+<style>
+*{
+background-color: pink;
+margin: 0px;
+}
+header {
+background-color: #FDCEDE;
+text-align: center;
+padding: 20px;
+margin: 5px;
+border: 1px solid #B04A6C;
+}
+.top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+    <body>
+        <div class="top-btnn"><br>
+            <button onclick="goBack()" class="btn">Back</button><br>
+        </div>
+        <center><h2 style="color: white;">Math Operations</h2></center> <hr><br>
+<p id="result"></p>
+
+<script>
+let num1 = 10;
+let num2 = 3;
+let sum = num1 + num2;
+let product = num1 * num2;
+
+document.getElementById("result").innerHTML = Sum: ${sum}<br>Product: ${product};
+
+// JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script></script>
+ </body>
+ </html>

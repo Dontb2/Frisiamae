@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .button {background-color:yellow;}
+    .button2 {background-color: red; font-size: 30px;}
+    .button3 {background-color: pink; padding: 30px 10px}
+    .button4 {background-color: lightblue; border-radius: 25%;}
+    .button5 {background-color: gray; border: 2px solid red;}
+    .button6 {background-color:violet;transition-duration: 1s;}
+    .button7 {background-color:green; box-shadow: 0.5px 10px 0 yellow, 0.15px 10px 0 blue;}
+    .button8 {background-color:orange; cursor: not-allowed;}
+    .button9 {background-color:brown; width: 80%;}
+
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+  </style>
+/head>
+
+body>
+  <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+
+h2>CSS Button</h2><br><br>
+button class="button">All button use background-color property</button><br><br>
+button class="button2">this button use font-size property with a value of 30px</button><br><br>
+button class="button3">this button use padding with a value of 30px
+for top and bottom and 10px for left and right</button><br><br>
+button class="button4">this button use border-radius property with 25% value</button><br><br>
+button class="button5">this button use border property with the value of 2px for width, solid for design and red for thr color</button><br><br>
+button class="button6">this button use transition-duration property with 1s value, hover cursor to this buttonto see what happen</button><br><br>
+button class="button7">this button use box-shadow with a yellow and blue color value for shadow</button><br><br>
+button class="button8">this button use cursor property with bit allowed value, hover the cursor to this button to see what happen</button><br><br>
+button class="button9">this button use width property with the value of 80%</button>
+
+/body>
+<script> // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script>
+/html>

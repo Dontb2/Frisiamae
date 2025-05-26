@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink House Scene</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        
+        canvas {
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        #toggle-btn {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #ff6b9d;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        #toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        #toggle-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>frisia malandog</h1>
+    <canvas id="scene" width="800" height="500"></canvas>
+    <button id="toggle-btn">Toggle Day/Night</button>
+
+    <script>
+        // Initialize canvas and context
+        const canvas = document.getElementById('scene');
+        const ctx = canvas.getContext('2d');
+        
+        // Scene state
+        let isDayTime = true;
+        
+        // Animation variables
+        let clouds = [];
+        let leaves = [];
+        let windSpeed = 0.5;
+        let sunMoonY = 80;
+        let sunMoonDirection = 0.05;
+        
+        // Initialize clouds
+        function initClouds() {
+            clouds = [];
+            for (let i = 0; i < 5; i++) {
+                clouds.push({
+                    x: Math.random() * canvas.width,
+                    y: 50 + Math.random() * 100,
+                    width: 80 + Math.random() * 120,
+                    speed: 0.2 + Math.random() * 0.3,
+                    opacity: 0.6 + Math.random() * 0.3
+                });
+            }
+        }
+        
+        // Initialize falling leaves
+        function initLeaves() {
+            leaves = [];
+            for (let i = 0; i < 30; i++) {
+                leaves.push({
+                    x: 600 + Math.random() * 100,
+                    y: 200 + Math.random() * 100,
+                    size: 3 + Math.random() * 5,
+                    speedX: Math.random() * 1 - 0.5,
+                    speedY: 0.2 + Math.random() * 0.5,
+                    rotation: Math.random() * Math.PI * 2,
+                    rotSpeed: Math.random() * 0.05 - 0.025,
+                    color: `hsl(${30 + Math.random() * 30}, 70%, ${55 + Math.random() * 20}%)`
+                });
+            }
+        }
+        
+        // Draw a cloud
+        function drawCloud(x, y, width, opacity) {
+            ctx.save();
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            
+            // Draw multiple overlapping circles for a cloud shape
+            const height = width * 0.6;
+            const numCircles = 8;
+            
+            for (let i = 0; i < numCircles; i++) {
+                const circleX = x + (i / numCircles) * width;
+                const circleY = y + Math.sin(i * 0.5) * 20;
+                const radius = 20 + Math.sin(i * 1.5) * 10;
+                
+                ctx.beginPath();
+                ctx.arc(circleX, circleY, radius, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.restore();
+        }
+        
+        // Draw a tree
+        function drawTree(x, y, height, leafColor, trunkColor, withShadow = true) {
+            // Draw trunk
+            ctx.save();
+            
+            if (withShadow) {
+                ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 5;
+                ctx.shadowOffsetY = 5;
+            }
+            
+            ctx.fillStyle = trunkColor;
+            ctx.fillRect(x - 10, y - height / 3, 20, height / 3);
+            
+            // Draw leaves/crown
+            ctx.fillStyle = leafColor;
+            
+            // Draw main crown
+            ctx.beginPath();
+            ctx.moveTo(x, y - height);
+            ctx.bezierCurveTo(
+                x - 60, y - height + 30,
+                x - 80, y - height / 3 - 20,
+                x - 20, y - height / 3
+            );
+            
+            ctx.bezierCurveTo(
+                x - 10, y - height / 3,
+                x + 10, y - height / 3,
+                x + 20, y - height / 3
+            );
+            
+            ctx.bezierCurveTo(
+                x + 80, y - height / 3 - 20,
+                x + 60, y - height + 30,
+                x, y - height
+            );
+            
+            ctx.fill();
+            
+            ctx.restore();
+        }
+        
+        // Draw a house
+        function drawHouse(x, y, width, height, houseColor, roofColor, doorColor, windowColor) {
+            ctx.save();
+            
+            // House shadow
+            ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+            ctx.shadowBlur = 15;
+            ctx.shadowOffsetX = 10;
+            ctx.shadowOffsetY = 10;
+            
+            // Main house structure
+            ctx.fillStyle = houseColor;
+            ctx.fillRect(x, y - height, width, height);
+            
+            // Roof
+            ctx.beginPath();
+            ctx.moveTo(x - 20, y - height);
+            ctx.lineTo(x + width / 2, y - height - 60);
+            ctx.lineTo(x + width + 20, y - height);
+            ctx.closePath();
+            ctx.fillStyle = roofColor;
+            ctx.fill();
+            
+            // Reset shadow for details
+            ctx.shadowColor = 'transparent';
+            
+            // Door
+            ctx.fillStyle = doorColor;
+            const doorWidth = width / 4;
+            const doorHeight = height / 2;
+            const doorX = x + (width - doorWidth) / 2;
+            const doorY = y - doorHeight;
+            ctx.fillRect(doorX, doorY, doorWidth, doorHeight);
+            
+            // Door knob
+            ctx.fillStyle = '#ffcc00';
+            ctx.beginPath();
+            ctx.arc(doorX + doorWidth * 0.8, doorY + doorHeight / 2, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Windows
+            ctx.fillStyle = windowColor;
+            
+            // Left window
+            const windowSize = width / 5;
+            ctx.fillRect(x + width / 5 - windowSize / 2, y - height * 0.7, windowSize, windowSize);
+            
+            // Window frame
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x + width / 5 - windowSize / 2, y - height * 0.7 + windowSize / 2);
+            ctx.lineTo(x + width / 5 + windowSize / 2, y - height * 0.7 + windowSize / 2);
+            ctx.moveTo(x + width / 5, y - height * 0.7);
+            ctx.lineTo(x + width / 5, y - height * 0.7 + windowSize);
+            ctx.stroke();
+            
+            // Right window
+            ctx.fillStyle = windowColor;
+            ctx.fillRect(x + width * 4/5 - windowSize / 2, y - height * 0.7, windowSize, windowSize);
+            
+            // Window frame
+            ctx.beginPath();
+            ctx.moveTo(x + width * 4/5 - windowSize / 2, y - height * 0.7 + windowSize / 2);
+            ctx.lineTo(x + width * 4/5 + windowSize / 2, y - height * 0.7 + windowSize / 2);
+            ctx.moveTo(x + width * 4/5, y - height * 0.7);
+            ctx.lineTo(x + width * 4/5, y - height * 0.7 + windowSize);
+            ctx.stroke();
+            
+            ctx.restore();
+        }
+        
+        // Draw grass
+        function drawGrass(y) {
+            const grassColor = isDayTime ? '#4CAF50' : '#1F3D23';
+            const grassColors = isDayTime ? 
+                ['#4CAF50', '#66BB6A', '#388E3C', '#81C784'] : 
+                ['#1F3D23', '#2C5A34', '#183518', '#254D2C'];
+            
+            ctx.save();
+            
+            // Base grass
+            ctx.fillStyle = grassColors[0];
+            ctx.fillRect(0, y, canvas.width, canvas.height - y);
+            
+            // Add details to the grass
+            for (let i = 0; i < 1000; i++) {
+                const grassX = Math.random() * canvas.width;
+                const grassHeight = 5 + Math.random() * 15;
+                const colorIndex = Math.floor(Math.random() * grassColors.length);
+                
+                ctx.fillStyle = grassColors[colorIndex];
+                
+                // Draw a grass blade
+                ctx.beginPath();
+                ctx.moveTo(grassX, y);
+                ctx.lineTo(grassX - 2, y - grassHeight);
+                ctx.lineTo(grassX + 2, y - grassHeight);
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            ctx.restore();
+        }
+        
+        // Draw sun or moon
+        function drawSunMoon() {
+            if (isDayTime) {
+                // Sun
+                const gradient = ctx.createRadialGradient(
+                    100, sunMoonY, 20,
+                    100, sunMoonY, 40
+                );
+                gradient.addColorStop(0, '#FFD700');
+                gradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+                
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(100, sunMoonY, 40, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Core of the sun
+                ctx.fillStyle = '#FFF176';
+                ctx.beginPath();
+                ctx.arc(100, sunMoonY, 30, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Sun rays
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 2;
+                
+                for (let i = 0; i < 12; i++) {
+                    ctx.beginPath();
+                    const angle = i * Math.PI / 6;
+                    ctx.moveTo(
+                        100 + Math.cos(angle) * 40,
+                        sunMoonY + Math.sin(angle) * 40
+                    );
+                    ctx.lineTo(
+                        100 + Math.cos(angle) * 60,
+                        sunMoonY + Math.sin(angle) * 60
+                    );
+                    ctx.stroke();
+                }
+                
+            } else {
+                // Moon
+                ctx.save();
+                ctx.shadowColor = 'rgba(255, 255, 255, 0.7)';
+                ctx.shadowBlur = 30;
+                ctx.fillStyle = '#E0E0E0';
+                ctx.beginPath();
+                ctx.arc(100, sunMoonY, 30, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Moon craters
+                ctx.fillStyle = '#BDBDBD';
+                ctx.beginPath();
+                ctx.arc(85, sunMoonY - 10, 5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(110, sunMoonY + 5, 7, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(95, sunMoonY + 15, 6, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        // Draw stars for night scene
+        function drawStars() {
+            if (!isDayTime) {
+                ctx.save();
+                ctx.fillStyle = 'white';
+                
+                for (let i = 0; i < 100; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * 350;
+                    const size = Math.random() * 2 + 1;
+                    const opacity = 0.5 + Math.random() * 0.5;
+                    
+                    ctx.globalAlpha = opacity;
+                    // Twinkle effect
+                    const twinkle = 0.7 + 0.3 * Math.sin(Date.now() / 200 + i);
+                    ctx.globalAlpha *= twinkle;
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                ctx.restore();
+            }
+        }
+        
+        // Draw leaf particles
+        function drawLeaf(x, y, size, rotation, color) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            ctx.fillStyle = color;
+            
+            // Draw a simple leaf shape
+            ctx.beginPath();
+            ctx.moveTo(0, -size);
+            ctx.bezierCurveTo(
+                size, -size / 2,
+                size, size / 2,
+                0, size
+            );
+            ctx.bezierCurveTo(
+                -size, size / 2,
+                -size, -size / 2,
+                0, -size
+            );
+            ctx.fill();
+            
+            // Draw leaf veins
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.3)';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(0, -size);
+            ctx.lineTo(0, size);
+            ctx.stroke();
+            
+            ctx.restore();
+        }
+        
+        // Update the scene animation
+        function updateScene() {
+            // Update sun/moon position with a slight wobble
+            sunMoonY += sunMoonDirection;
+            if (sunMoonY > 100 || sunMoonY < 60) {
+                sunMoonDirection *= -1;
+            }
+            
+            // Update clouds
+            clouds.forEach(cloud => {
+                cloud.x += cloud.speed * windSpeed;
+                if (cloud.x > canvas.width + cloud.width) {
+                    cloud.x = -cloud.width;
+                    cloud.y = 50 + Math.random() * 100;
+                }
+            });
+            
+            // Update leaves
+            leaves.forEach(leaf => {
+                leaf.x += leaf.speedX + windSpeed / 2;
+                leaf.y += leaf.speedY;
+                leaf.rotation += leaf.rotSpeed;
+                
+                // Reset leaves that fall off-screen
+                if (leaf.y > 400 || leaf.x < 0 || leaf.x > canvas.width) {
+                    leaf.x = 600 + Math.random() * 100;
+                    leaf.y = 200 + Math.random() * 100;
+                    leaf.speedX = Math.random() * 1 - 0.5;
+                }
+            });
+            
+            // Occasionally change wind direction and speed
+            if (Math.random() < 0.003) {
+                windSpeed = Math.random() * 1 - 0.5;
+            }
+        }
+        
+        // Render the scene
+        function renderScene() {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Sky gradient
+            const skyGradient = ctx.createLinearGradient(0, 0, 0, 350);
+            
+            if (isDayTime) {
+                skyGradient.addColorStop(0, '#2196F3');
+                skyGradient.addColorStop(1, '#64B5F6');
+            } else {
+                skyGradient.addColorStop(0, '#0D1423');
+                skyGradient.addColorStop(1, '#1A237E');
+            }
+            
+            ctx.fillStyle = skyGradient;
+            ctx.fillRect(0, 0, canvas.width, 350);
+            
+            // Draw stars (night only)
+            drawStars();
+            
+            // Draw sun or moon
+            drawSunMoon();
+            
+            // Draw clouds
+            clouds.forEach(cloud => {
+                drawCloud(cloud.x, cloud.y, cloud.width, isDayTime ? cloud.opacity : cloud.opacity / 2);
+            });
+            
+            // Draw grass
+            drawGrass(350);
+            
+            // Draw pink house on left
+            drawHouse(
+                200, 350, 200, 150, 
+                isDayTime ? '#FFC0CB' : '#B5777E', // House color (pink/dark pink)
+                isDayTime ? '#8D6E63' : '#5D4037', // Roof color
+                isDayTime ? '#6D4C41' : '#3E2723', // Door color
+                isDayTime ? '#BBDEFB' : '#0D47A1'  // Window color
+            );
+            
+            // Draw trees
+            drawTree(600, 350, 200, 
+                isDayTime ? '#388E3C' : '#1B5E20', 
+                isDayTime ? '#795548' : '#3E2723');
+            drawTree(500, 350, 180, 
+                isDayTime ? '#43A047' : '#1E5C24', 
+                isDayTime ? '#6D4C41' : '#3E2723');
+            drawTree(700, 350, 160, 
+                isDayTime ? '#2E7D32' : '#194D19', 
+                isDayTime ? '#5D4037' : '#3E2723');
+            
+            // Draw falling leaves
+            leaves.forEach(leaf => {
+                drawLeaf(leaf.x, leaf.y, leaf.size, leaf.rotation, leaf.color);
+            });
+        }
+        
+        // Animation loop
+        function animate() {
+            updateScene();
+            renderScene();
+            requestAnimationFrame(animate);
+        }
+        
+        // Toggle day/night button event
+        document.getElementById('toggle-btn').addEventListener('click', () => {
+            isDayTime = !isDayTime;
+            document.getElementById('toggle-btn').innerText = isDayTime ? 'Switch to Night' : 'Switch to Day';
+        });
+        
+        // Initialize the scene
+        initClouds();
+        initLeaves();
+        animate();
+    </script>
+</body>
+</html>

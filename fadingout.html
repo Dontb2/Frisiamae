@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fading Out an Element</title>
+    <style>
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+        #fadeText {
+            font-size: 20px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hidden {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-btnn">
+        <button onclick="goBack()" class="btn">Back</button>
+    </div>
+    <p id="fadeText">This text will fade out.</p>
+    <button id="fadeButton">Fade Out</button>
+
+    <script>
+        const fadeText = document.getElementById("fadeText");
+        const fadeButton = document.getElementById("fadeButton");
+
+        fadeButton.addEventListener("click", () => {
+            fadeText.classList.add("hidden");
+        });
+
+        fadeText.addEventListener("transitionend",(event) => {
+         if (event.propertyName === "opacity") {
+            console.log("Text has fully faded out.");
+         }
+        });
+
+                   // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+</body>
+</html>

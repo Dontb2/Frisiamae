@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity No.1 javascript</title>
+</head>
+<style>
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+<body style="background-color: pink;">
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+    <h1> Answer at your own risk!</h1>
+    
+        <p> 1. What is the file extension of JavaScript?</p>
+        <button onclick="checkAnswer('q1', 'A')">A. ".jpg" </button>
+        <button onclick="checkAnswer('q1', 'B')">B. ".jss" </button>
+        <button onclick="checkAnswer('q1', 'C')">C. ".js" </button>
+        <button onclick="checkAnswer('q1', 'D')">C. ".jgs" </button>
+        
+        
+        <p id="result-q1" class="result"></p>
+      
+        <p id="result-q1" class="result"></p>
+        
+        
+        <p>2. Who invented JavaScript? </p>
+        <button onclick="checkAnswer('q2', 'A')">A. Brendean Eich
+        <button onclick="checkAnswer('q2', 'B')">B. Brendon Eich </button>
+        <button onclick="checkAnswer('q2', 'C')">C. Brendein Eich </button> 
+        <button onclick="checkAnswer('q2', 'D')">D. Brendan Eich </button>
+        <p id="result-q2" class="result"></p>
+
+        <p>3. JavaScript function can be also called as? </p>
+        <button onclick="checkAnswer('q3', 'A')">A. Invoke </button>
+        <button onclick="checkAnswer('q3', 'B')">B. Code </button>
+        <button onclick="checkAnswer('q3', 'C')">C. Event </button>
+        <button onclick="checkAnswer('q3', 'D')">D. Block</button> 
+        <p id="result-q3" class="result"></p>
+    </div>
+
+        <p>4. Where section JavaScript function placed?</p>
+        <button onclick="checkAnswer('q4', 'A')">A. < head ></button>
+        <button onclick="checkAnswer('q4', 'B')">B. < script ></button>
+        <button onclick="checkAnswer('q4', 'C')">C. 
+        < footer ></button>
+        <button onclick="checkAnswer('q4', 'D')">D. < html > </button>
+        <p id="result-q4" class="result"></p>
+
+        <p>5. It can be referred with a full URL or with a path relative.</p>
+        <button onclick="checkAnswer('q5', 'A')">A. Inline</button>
+        <button onclick="checkAnswer('q5', 'B')">B. External</button>
+        <button onclick="checkAnswer('q5', 'C')">C. JavaScript </button>
+        <button onclick="checkAnswer('q5', 'D')">D. HTML </button>
+        <p id="result-q5" class="result"></p>
+
+        <p>6. Choose the correct HTML element for largest heading</p>
+        <button onclick="checkAnswer('q6', 'A')">A. < h0 ></button>
+        <button onclick="checkAnswer('q6', 'B')">B. < h1 > </button>
+        <button onclick="checkAnswer('q6', 'C')">C. < h4 > </button>
+        <button onclick="checkAnswer('q6', 'D')">D. < large > </button>
+        <p id="result-q6" class="result"></p>
+   
+        <p>7. Choose the correct HTML element to define important text. </p>
+        <button onclick="checkAnswer('q7', 'A')">A. < i ></button>
+        <button onclick="checkAnswer('q7', 'B')">B. < important > </button>
+        <button onclick="checkAnswer('q7', 'C')">C. < b > </button>
+        <button onclick="checkAnswer('q7', 'D')">D. < mark >  </button>
+        <p id="result-q7" class="result"></p>
+
+    
+        <p>8. Which character is used to indicate and end tag?</p>
+        <button onclick="checkAnswer('q8', 'A')">A. * </button>
+        <button onclick="checkAnswer('q8', 'B')">B. / </button>
+        <button onclick="checkAnswer('q8', 'C')">C. <></button>
+        <button onclick="checkAnswer('q2', 'D')">D. ^ </button>
+        <p id="result-q8" class="result"></p>
+        
+        <p>9. How can you make a numbered list.</p>
+        <button onclick="checkAnswer('q9', 'A')">A. < ul ></button>
+        <button onclick="checkAnswer('q9', 'B')">B. < ol ></button>
+        <button onclick="checkAnswer('q9', 'C')">C. < dil ></button>
+        <button onclick="checkAnswer('q9', 'D')">D. < list ></list></button>
+        <p id="result-q9" class="result"></p>
+    </div>
+    
+        <p>10. What type of software is Microsoft Excel?</p>
+        <button onclick="checkAnswer('q10', 'A')">A) Spreadsheet</button>
+        <button onclick="checkAnswer('q10', 'B')">B) Word Processing</button>
+        <button onclick="checkAnswer('q10', 'C')">C) Presentation</button>
+        <button onclick="checkAnswer('q2', 'C')">C.Hard Drive </button>
+        <p id="result-q10" class="result"></p>
+
+    <script>
+        
+        function checkAnswer (questionId, selectedAnswer) {
+            // correct answers for each question
+            correctAnswers = {
+                q1: 'C',
+                q2: 'D',
+                q3: 'C',
+                q4: 'A',
+                q5: 'B',
+                q6: 'B',
+                q7: 'A',
+                q8: 'B',
+                q9: 'B',
+                q10:'A',
+            };
+
+            // Get the result element by questionId
+            const resultElement = document.getElementById('result-' + questionId);
+
+            // Check if the selected answer is correct
+            if (selectedAnswer === correctAnswers[questionId]) {
+                resultElement.innerHTML = "Correct";
+                
+            } else {
+                resultElement.innerHTML = "Wrong";
+                
+            }
+        }
+    </script>
+</body>
+<script> // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+</html>

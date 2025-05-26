@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity No.1 javascript</title>
+</head>
+<style>
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+<body style="background-color: pink;">
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+    h1> Answer at your own risk!</h1><br>
+    
+        p> 1. What is the file extension of JavaScript?</p>
+        <br> button onclick="checkAnswer('q1', 'A')">A. ".jpg" </button>
+        <br>   button onclick="checkAnswer('q1', 'B')">B. ".jss" </button>
+        <br> button onclick="checkAnswer('q1', 'C')">C. ".js" </button>
+        <br>  button onclick="checkAnswer('q1', 'D')">C. ".jgs" </button>
+        
+        
+        <br>  p id="result-q1" class="result"></p>
+      
+        <br> p id="result-q1" class="result"></p>
+        
+        
+        <br>  p>2. Who invented JavaScript? </p>
+        <br> button onclick="checkAnswer('q2', 'A')">A. Brendean Eich
+        <br> button onclick="checkAnswer('q2', 'B')">B. Brendon Eich </button>
+        <br> button onclick="checkAnswer('q2', 'C')">C. Brendein Eich </button> 
+        <br>  button onclick="checkAnswer('q2', 'D')">D. Brendan Eich </button>
+        <br>  p id="result-q2" class="result"></p>
+
+         <br>  p>3. JavaScript function can be also called as? </p>
+         <br> button onclick="checkAnswer('q3', 'A')">A. Invoke </button>
+         <br>  button onclick="checkAnswer('q3', 'B')">B. Code </button>
+         <br>  button onclick="checkAnswer('q3', 'C')">C. Event </button>
+         <br>  button onclick="checkAnswer('q3', 'D')">D. Block</button> 
+        <br> p id="result-q3" class="result"></p>
+        <br> /div>
+
+        <br> p>4. Where section JavaScript function placed?</p>
+        <br>  button onclick="checkAnswer('q4', 'A')">A. < head ></button>
+        <br>  button onclick="checkAnswer('q4', 'B')">B. < script ></button>
+        <br> button onclick="checkAnswer('q4', 'C')">C. 
+        <br>   footer ></button>
+        <br>  button onclick="checkAnswer('q4', 'D')">D. < html > </button>
+        <br>  p id="result-q4" class="result"></p>
+
+        <br>  p>5. It can be referred with a full URL or with a path relative.</p>
+        <br> button onclick="checkAnswer('q5', 'A')">A. Inline</button>
+        <br> button onclick="checkAnswer('q5', 'B')">B. External</button>
+        <br> button onclick="checkAnswer('q5', 'C')">C. JavaScript </button>
+        <br>  button onclick="checkAnswer('q5', 'D')">D. HTML </button>
+        <br>  p id="result-q5" class="result"></p>
+
+        <br>  p>6. Choose the correct HTML element for largest heading</p>
+        <br>  button onclick="checkAnswer('q6', 'A')">A. < h0 ></button>
+        <br>  button onclick="checkAnswer('q6', 'B')">B. < h1 > </button>
+        <br>  button onclick="checkAnswer('q6', 'C')">C. < h4 > </button>
+        <br>  button onclick="checkAnswer('q6', 'D')">D. < large > </button>
+        <br>   p id="result-q6" class="result"></p>
+   
+        <br>   p>7. Choose the correct HTML element to define important text. </p>
+        <br>  button onclick="checkAnswer('q7', 'A')">A. < i ></button>
+        <br>  button onclick="checkAnswer('q7', 'B')">B. < important > </button>
+        <br>  button onclick="checkAnswer('q7', 'C')">C. < b > </button>
+        <br>  button onclick="checkAnswer('q7', 'D')">D. < mark >  </button>
+        <br>  p id="result-q7" class="result"></p>
+
+    
+        <br>  p>8. Which character is used to indicate and end tag?</p>
+        <br> button onclick="checkAnswer('q8', 'A')">A. * </button>
+        <br>  button onclick="checkAnswer('q8', 'B')">B. / </button>
+        <br>  button onclick="checkAnswer('q8', 'C')">C. <></button>
+        <br>  button onclick="checkAnswer('q2', 'D')">D. ^ </button>
+        <br>  p id="result-q8" class="result"></p>
+        
+        <br> p>9. How can you make a numbered list.</p>
+        <br>  button onclick="checkAnswer('q9', 'A')">A. < ul ></button>
+        <br>  button onclick="checkAnswer('q9', 'B')">B. < ol ></button>
+        <br>  button onclick="checkAnswer('q9', 'C')">C. < dil ></button>
+        <br>  button onclick="checkAnswer('q9', 'D')">D. < list ></list></button>
+        <br>  p id="result-q9" class="result"></p>
+        <br>/div>
+    
+        <br>   p>10. What type of software is Microsoft Excel?</p>
+        <br> button onclick="checkAnswer('q10', 'A')">A) Spreadsheet</button>
+        <br> button onclick="checkAnswer('q10', 'B')">B) Word Processing</button>
+        <br>  button onclick="checkAnswer('q10', 'C')">C) Presentation</button>
+        <br>  button onclick="checkAnswer('q2', 'C')">C.Hard Drive </button>
+        <br>  p id="result-q10" class="result"></p>
+
+        <br>script>
+        
+        <br>   function checkAnswer (questionId, selectedAnswer) {
+            <br>    // correct answers for each question
+                <br>    correctAnswers = {
+                    <br>      q1: 'C',
+                    <br>    q2: 'D',
+                    <br>    q3: 'C',
+                    <br>   q4: 'A',
+                    <br>   q5: 'B',
+                <br>   q6: 'B',
+                <br>   q7: 'A',
+                <br>   q8: 'B',
+                <br>   q9: 'B',
+                <br>   q10:'A',
+                <br>};
+
+                <br>  // Get the result element by questionId
+                <br>  const resultElement = document.getElementById('result-' + questionId);
+
+                <br>  // Check if the selected answer is correct
+                <br> if (selectedAnswer === correctAnswers[questionId]) {
+                    <br>     resultElement.innerHTML = "Correct";
+                
+                    <br>   } else {
+                        <br>    resultElement.innerHTML = "Wrong";
+                
+                        <br>   }
+                        <br>  }
+                        <br>   /script>
+    <br>/body>
+<script> // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+/html>

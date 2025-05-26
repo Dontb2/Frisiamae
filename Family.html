@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY FAMILY</title>
+    <style>
+           .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+        body {
+            background-color: lavender;
+            font-family: 'Bradley Hand ITC', cursive;
+            font-size: 20px;
+        }
+        .family-section {
+            padding: 30px;
+            margin: 30px;
+            background: honeydew;
+            border: 5px double mistyrose;
+            outline: 5px dashed rosybrown;
+            outline-offset: 25px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body> <div class="top-btnn"><br>
+    <button onclick="goBack()" class="btn">Back</button><br>
+</div>
+
+    <h1>My Family</h1>
+
+    <div class="family-section">
+        <p>One of my favorite things to do with my family is going for a picnic. We love spending time outdoors, enjoying delicious food, and playing games together.</p>
+        <img src="picnic.jpeg" alt="Family picnic">
+        <hr>
+    </div>
+
+    <div class="family-section">
+        <p>Another thing we love to take wacky pictures. We gather around in the living room, we take pictures together.</p>
+        <img src="wacky.jpeg" alt="Family movie night">
+        <hr>
+    </div>
+
+    <div class="family-section">
+        <p>We also enjoy eating meals together. Everyone has a different task in school,chores, and etc. but we have still put time to eat together.</p>
+        <img src="eating.jpeg" alt="Family cooking">
+        <hr>
+    </div>
+
+    <div class="family-section">
+        <p>We also love family outing, and we really sure that we're gonna enjoy it, and bond together.</p>
+        <img src="outing.jpeg" alt="Family board games">
+        <hr>
+    </div>
+
+    <div class="family-section">
+        <p>Going on family trips is something we look forward to. Exploring new places and creating memories together is always a joy.</p>
+        <img src="trip.jpeg" alt="Family trip">
+        <hr>
+    </div>
+</body><script>
+// JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script>
+</html>

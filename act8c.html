@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation with Google Maps</title>
+</head>
+<style>
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+<br>body>
+
+    
+    <div class="top-btnn">
+        <button onclick="goBack()" class="btn">Back</button>
+    </div>
+
+    <br>h2>My Location</h2>
+    <br>p id="status">Click the button to get your location.</p>
+    <br>button onclick="getLocation()">Get My Location</button>
+    br><br>
+    iframe id="map" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+    <br>script>
+    <br>function getLocation() {
+        <br>    if (navigator.geolocation) {
+            <br>    navigator.geolocation.getCurrentPosition(showPosition, showError);
+            <br>} else {
+                <br>  document.getElementById("status").innerText = "Geolocation is not supported by this browser.";
+                <br> }
+        }
+
+        <br>function showPosition(position) {
+            <br>let latitude = position.coords.latitude;
+            <br>let longitude = position.coords.longitude;
+            <br>           document.getElementById("status").innerText = `Latitude: ${latitude}, Longitude: ${longitude}`;
+
+            <br>// Embed Google Maps with user coordinates
+            <br>let mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}&output=embed`;
+            <br>document.getElementById("map").src = mapUrl;
+        }
+
+        <br>function showError(error) {
+            <br> switch (error.code) {
+                <br>case error.PERMISSION_DENIED:
+                <br>document.getElementById("status").innerText = "User denied the request for Geolocation.";
+                <br>break;
+                <br>case error.POSITION_UNAVAILABLE:
+                               <br>document.getElementById("status").innerText = "Location information is unavailable.";
+                               <br>    break;
+                               <br>case error.TIMEOUT:
+                               <br>document.getElementById("status").innerText = "The request to get user location timed out.";
+                               <br>break;
+                               <br>case error.UNKNOWN_ERROR:
+                               <br>document.getElementById("status").innerText = "An unknown error occurred.";
+                               <br>break;
+                               <br>}
+        }
+        <script>
+            // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+    </script>
+
+<br>/body>
+<br>/html>

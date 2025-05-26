@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Grade Calculator</title>
+    <style>
+    
+    p   {
+          color: #914767 ;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+        }
+
+        .cart-container {
+            background-color: pink;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #914767 ;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+    </style>
+</head>
+<body>
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+    <h1>Enter Five Test Scores</h1>
+    <form id="scoreForm">
+        <input type="number" id="score1" placeholder="Score 1" required><br>
+        <input type="number" id="score2" placeholder="Score 2" required><br>
+        <input type="number" id="score3" placeholder="Score 3" required><br>
+        <input type="number" id="score4" placeholder="Score 4" required><br>
+        <input type="number" id="score5" placeholder="Score 5" required>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <h2>Results</h2>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('scoreForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const scores = [
+                parseFloat(document.getElementById('score1').value),
+                parseFloat(document.getElementById('score2').value),
+                parseFloat(document.getElementById('score3').value),
+                parseFloat(document.getElementById('score4').value),
+                parseFloat(document.getElementById('score5').value)
+            ];
+
+            const result = processTestScores(scores);
+            displayResults(result);
+        });
+
+        function processTestScores(scores) {
+            if (!Array.isArray(scores) || scores.length !== 5) {
+                throw new Error("Please provide exactly five test scores in an array.");
+            }
+
+            const total = scores.reduce((acc, score) => {
+                if (typeof score !== 'number') {
+                    throw new Error("All scores must be numbers.");
+                }
+                return acc + score;
+            }, 0);
+
+            const average = total / scores.length;
+
+            return {
+                average: average,
+            };
+        }
+
+        function displayResults(result) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <p>Average Score: ${result.average}</p>
+                `;
+            
+        }
+
+     // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script>
+</body>
+</html>

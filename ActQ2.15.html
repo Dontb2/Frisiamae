@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart Total</title>
+    <style>
+        
+        p   {
+          color: #914767 ;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+        }
+
+        .cart-container {
+            background-color: pink;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #914767 ;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+</head>
+<body>
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+<div class="cart-container">
+    <h2>Shopping Cart</h2>
+
+    <label for="price">Price of Item (₱):</label>
+    <input type="number" id="price" placeholder="Enter price" step="0.01">
+    
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" placeholder="Enter quantity" min="1">
+    
+    <button onclick="addItem()">Add Item</button>
+
+    <div class="total">
+        <p>Total Cost: ₱<span id="total-cost">0.00</span></p>
+    </div>
+</div>
+<script>
+    let totalCost = 0; // Initialize the total cost
+
+    function addItem() {
+        // Get the price and quantity values from input fields
+        const price = parseFloat(document.getElementById('price').value);
+        const quantity = parseInt(document.getElementById('quantity').value);
+
+        // Check if inputs are valid
+        if (isNaN(price) || price <= 0 || isNaN(quantity) || quantity <= 0) {
+            alert('Please enter valid values for price and quantity.');
+            return;
+        }
+
+        // Calculate total for this item
+        const itemTotal = price * quantity;
+
+        // Update the overall total cost
+        totalCost += itemTotal;
+
+        // Display the updated total cost
+        document.getElementById('total-cost').textContent = totalCost.toFixed(2);
+
+        // Clear the input fields for the next item
+        document.getElementById('price').value = '';
+        document.getElementById('quantity').value = '';
+    }
+     // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+</script>
+</body>
+</html>

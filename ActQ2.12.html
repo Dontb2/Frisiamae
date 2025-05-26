@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Celsius to Fahrenheit Converter</title>
+<style>
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.converter {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff; /* Blue */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+#fahrenheit {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+
+</head>
+<body>
+  <div class="top-btnn"><br>
+    <button onclick="goBack()" class="btn">Back</button><br>
+</div>
+  <div class="converter">
+    <h1>Celsius to Fahrenheit Converter</h1>
+    <div class="input-group">
+      <label for="celsius">Celsius:</label>
+      <input type="number" id="celsius" placeholder="Enter Celsius temperature">
+    </div>
+    <button id="convert">Convert</button>
+    <div id="fahrenheit"></div>
+  </div>
+  <script>const celsiusInput = document.getElementById('celsius');
+    const convertButton = document.getElementById('convert');
+    const fahrenheitDiv = document.getElementById('fahrenheit');
+    
+    convertButton.addEventListener('click', () => {
+      const celsius = parseFloat(celsiusInput.value);
+    
+      if (isNaN(celsius)) {
+        fahrenheitDiv.textContent = "Please enter a valid number.";
+        return;
+      }
+    
+      const fahrenheit = (celsius * 9/5) + 32;
+      fahrenheitDiv.textContent = ${celsius} Celsius is equal to ${fahrenheit.toFixed(2)} Fahrenheit;
+    });
+    
+     // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script>
+</body>
+</html>

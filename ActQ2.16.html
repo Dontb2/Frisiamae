@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart Total</title>
+    <style>
+        
+        p   {
+          color: #914767 ;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+        }
+
+        .cart-container {
+            background-color: pink;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #914767 ;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+</head>
+<body>
+  <div class="top-btnn"><br>
+    <button onclick="goBack()" class="btn">Back</button><br>
+</div>
+    <header><b>Monthly Savings Calculator</b></header>
+      <div class="container">
+        <form id="savings-form">
+    
+          <div class="month-input">
+            <label for="january">January:</label>
+            <input type="number" id="january" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="february">February:</label>
+            <input type="number" id="february" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="march">March:</label>
+            <input type="number" id="march" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="april">April:</label>
+            <input type="number" id="april" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="may">May:</label>
+            <input type="number" id="may" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="june">June:</label>
+            <input type="number" id="june" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="july">July:</label>
+            <input type="number" id="july" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="august">August:</label>
+            <input type="number" id="august" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="september">September:</label>
+            <input type="number" id="september" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="october">October:</label>
+            <input type="number" id="october" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="november">November:</label>
+            <input type="number" id="november" min="0" placeholder="Enter amount">
+          </div>
+          <div class="month-input">
+            <label for="december">December:</label>
+            <input type="number" id="december" min="0" placeholder="Enter amount">
+          </div>
+    
+          <button type="button" onclick="calculateTotal()">Calculate Total</button>
+        </form>
+        <div class="result" id="result">Total Savings: $0</div>
+      </div>
+    
+      <script>
+        function calculateTotal() {
+          let total = 0;
+    
+          const months = [
+            'january', 'february', 'march', 'april', 'may', 
+            'june', 'july', 'august', 'september', 'october', 
+            'november', 'december'
+          ];
+    
+          months.forEach(month => {
+            const input = document.getElementById(month);
+            const value = parseFloat(input.value) || 0;
+            total += value;
+          });
+    
+          document.getElementById('result').innerText = `Total Savings: $${total.toFixed(2)}`;
+        }
+        // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+   </script>
+</body>
+</html>

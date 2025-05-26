@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Score Calculator</title>
+      <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: pink;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: pink;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #914767 ;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #E1369B;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+  </style>
+  <body>
+    <div class="top-btnn"><br>
+      <button onclick="goBack()" class="btn">Back</button><br>
+  </div>
+    <div class="card">
+      <div class="card-inner">
+      <div class="card-front">
+      <div>
+      <h3>DISCOUNT QUALIFICATION</h3><br>
+      <span>Hover to see the back!</span>
+      </div>
+      </div>
+      <div class="card-back">
+      <div>
+
+
+  <div class="container">
+    <h1>Check ₱50 Discount Qualification</h1>
+    
+    <label for="totalAmount">Enter Total Amount (PHP):</label>
+    <input type="number" id="totalAmount" placeholder="Enter amount in PHP" required>
+    
+    <button onclick="checkQualification()">Check Qualification</button>
+    
+    <p id="result" class="result"></p>
+
+    <h1>Discount Calculator</h1>
+    
+    <label for="price">Enter Original Price (in pesos):</label>
+    <input type="number" id="price" placeholder="Enter amount">
+    
+    <button onclick="displayDiscountedPrice()">Apply ₱50 Pesos Discount</button>
+    
+    <p id="result"></p>
+
+</div>
+
+  <script>
+
+function checkQualification() {
+
+  const totalAmount = parseFloat(document.getElementById('totalAmount').value);
+  
+  if (totalAmount >= 50) {
+    document.getElementById('result').textContent = "You are qualified for a discount!";
+    document.getElementById('result').className = "result qualified";
+  } else {
+    document.getElementById('result').textContent = "You are not qualified for a discount.";
+    document.getElementById('result').className = "result not-qualified";
+  }
+}
+
+function applyDiscount(originalPrice) {
+            const discount = 50; 
+            const discountedPrice = originalPrice - discount;
+
+            if (discountedPrice < 0) {
+                return 0; 
+            }
+            
+            return discountedPrice;
+        }
+
+        function displayDiscountedPrice() {
+            const originalPrice = parseFloat(document.getElementById('price').value);
+            
+            if (isNaN(originalPrice) || originalPrice <= 0) {
+                document.getElementById('result').innerText = "Please enter a valid price.";
+                return;
+            }
+            
+            const finalPrice = applyDiscount(originalPrice);
+            
+            document.getElementById('result').innerText = `Discounted Price: ₱${finalPrice.toFixed(2)} Pesos`;
+        }
+       // JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+</script>
+</body>
+</html>

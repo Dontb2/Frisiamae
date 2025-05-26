@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+</head>
+<style>
+    .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+</style>
+<body>
+    <div class="top-btnn"><br>
+        <button onclick="goBack()" class="btn">Back</button><br>
+    </div>
+ <header><h1>TEMPERATURE CONVERSION 
+ <br> (Celcius to Fahrenheit)</h1></header>   
+</body>
+<script>
+    let celsius = prompt("Enter the temperature in Celsius");
+
+
+let fahrenheit = (celsius * ( 9 / 5)) + 32;
+
+
+alert(${celsius}°C is equal to ${fahrenheit}°F);
+console.log(${celsius}°C is equal to ${fahrenheit}°F);
+
+// JavaScript function to go back to the previous page
+  function goBack() {
+      window.history.back();
+  }
+  </script>
+</html>
