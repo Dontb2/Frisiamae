@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shape</title>
+    <style>
+        .top-btnn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #45a049; /* Darker Green */
+}
+    </style>
+</head>
+<body>
+    <div class="top-btnn">
+        <button onclick="goBack()" class="btn">Back</button>
+    </div>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d")
+    
+    // Draw a rectangle
+    ctx.fillStyle = "blue"
+    ctx.fillRect (50, 50, 100, 60);
+    
+    // Draw a circle
+    ctx.beginPath();
+    ctx.arc(200, 100, 40, 0, Math.PI * 2);
+    ctx.fillStyle = "red";
+    ctx.fill() ;
+
+    // Draw a line
+    ctx.beginPath();
+    ctx.moveTo (50, 200);
+    ctx.lineTo (250, 200);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+            // JavaScript function to go back to the previous page
+            function goBack() {
+        window.history.back();
+    }
+    </script>
+</body>
+</html>

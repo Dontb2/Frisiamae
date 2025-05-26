@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: lightpink;
+    background-size: cover;
+
+
+
+}
+
+mark {
+  background-color: pink;
+}
+
+header {
+    background-image: black;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0px 0px 15px #DD477A;
+    font-size: small;
+}
+
+main {
+    padding: 20px;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+    gap: 30px;
+    margin: 20px;
+
+}
+
+.product {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 15px #DD477A;
+    background-color: white;
+}
+
+.product img {
+    max-width: 100%;
+    height: 250px;
+}
+
+.price {
+    font-weight: bold;
+    color: hotpink;
+}
+
+button {
+    background-color: #DD477A;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #DD477A;
+}
+
+/* Navigation */
+
+.pagination a {
+    color: #DD477A;
+    font-size: small;
+    padding: 2px 20px;
+    margin: 0px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.pagination a.active {
+    background-color: #DD477A;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px pink;
+}
+
+.pagination a:hover:not(.active) {
+    border-radius: 5px;
+    background-color: hotpink;
+    color: pink;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    margin: 0 5px;
+}
+
+footer {
+    background-color: pink;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    box-shadow: 0px 0px 15px #DD477A;
+    position: relative;
+}
